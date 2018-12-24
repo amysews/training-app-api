@@ -23,9 +23,7 @@ async function create(req, res) {
 async function getAll(req, res) {
   const findAllQuery = 'SELECT * FROM measures';
   try {
-    console.log('here')
     const { rows, rowCount } = await db.query(findAllQuery);
-    console.log({rows})
     return res.status(200).json({ measures: rows, count: rowCount });
   } catch (error) {
     return res.status(400).send(error);
