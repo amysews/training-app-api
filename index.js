@@ -17,5 +17,5 @@ app.get('/', (req, res) => {
 
 app.use('/api', apiRouter)
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
 console.log('app running on port ', 3000);
