@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel server.js --out-dir build",
-    "dev-start": "babel-watch server.js",
+    "build": "babel index.js --out-dir build",
+    "dev-start": "babel-watch index.js",
     "seed": "psql -f db/tables.sql db/initialData.sql",
-    "start": "node index.js"
+    "start": "node build/index.js"
   },
   "author": "",
   "license": "ISC",
