@@ -24,8 +24,11 @@ CREATE TABLE exercises (
 CREATE TABLE planned_workouts (
     id serial PRIMARY KEY NOT NULL,
     name text,
-    description text,
-    target_date timestamptz,
+    description text
+);
+
+CREATE TABLE planned_workouts_exercises (
+    planned_workouts_id integer REFERENCES planned_workouts(id),
     exercise_id integer REFERENCES exercises(id),
     repetitions integer,
     sets integer,
@@ -35,7 +38,11 @@ CREATE TABLE planned_workouts (
 
 CREATE TABLE completed_workouts (
     id serial PRIMARY KEY NOT NULL,
-    date timestamptz DEFAULT NOW() NOT NULL,
+    date timestamptz DEFAULT NOW() NOT NULL
+);
+
+CREATE TABLE completed_workouts_exercises (
+    completed_workouts_id integer REFERENCES completed_workouts(id),
     exercise_id integer REFERENCES exercises(id),
     repetitions integer,
     sets integer,

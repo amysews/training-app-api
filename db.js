@@ -2,8 +2,8 @@ const { Pool } = require('pg');
 const dotenv = require('dotenv');
 const fs = require('fs');
 
-const tablesSQL = fs.readFileSync('db/tables.sql').toString();
-const initialDataSQL = fs.readFileSync('db/initialData.sql').toString();
+const tablesSQL = fs.readFileSync('database/tables.sql').toString();
+const initialDataSQL = fs.readFileSync('database/initialData.sql').toString();
 dotenv.config();
 
 const pool = new Pool({

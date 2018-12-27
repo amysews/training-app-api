@@ -9,8 +9,16 @@ VALUES ('squat', 'How low can you go...', 'none', 'full body', 'quantity'),
 ('plank', 'Hold plank position...', 'none', 'full body', 'duration'), 
 ('side plank', 'Alternating sides, hold side plank', 'none', 'full body', 'duration');
 
-INSERT INTO planned_workouts (name, exercise_id)
-VALUES ('Session 1', 1), ('Session 1', 2), ('Session 1', 3);
+INSERT INTO planned_workouts (name, description)
+VALUES ('Full body 1', 'Description of full body 1'), ('Full body 2', 'Description of full body 2'), ('Upper body', 'Description of upper body');
 
-INSERT INTO completed_workouts (exercise_id)
-VALUES (1), (2);
+INSERT INTO planned_workouts_exercises (planned_workouts_id, exercise_id, repetitions, sets, weight, duration)
+VALUES (1, 1, 10, 3, 12, 0), (1, 2, 1, 3, 0, 30), (1, 3, 2, 3, 0, 30),
+(2, 1, 10, 3, 12, 0), (2, 2, 1, 3, 0, 30), (2, 3, 2, 3, 0, 30),
+(3, 1, 10, 3, 12, 0), (3, 2, 1, 3, 0, 30), (3, 3, 2, 3, 0, 30);
+
+INSERT INTO completed_workouts (date)
+VALUES (NOW());
+
+INSERT INTO completed_workouts_exercises (completed_workouts_id, exercise_id, repetitions, sets, weight, duration)
+VALUES (1, 1, 10, 3, 12, 0);

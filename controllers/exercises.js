@@ -45,6 +45,33 @@ async function getOne(req, res) {
   }
 }
 
+async function getOnePlanned(req, res) {
+  const text = `SELECT
+    exercises.id,
+    exercises.name,
+    exercises.description,
+    repetitions,
+    sets,
+    weight,
+    duration,
+    type,
+    measure
+    FROM planned_workouts
+    JOIN planned_workouts_exercises on planned_workouts_exercises.planned_workouts_id = planned_workouts.id
+    JOIN exercises on exercises.id = planned_workouts_exercises.exercise_id
+    WHERE planned_workouts.id = $1
+    AND exercises.id = $2`;
+  try {
+    const { rows } = await db.query(text, [req.params.sessionId, req.params.exerciseId]);
+    if (!rows.length) {
+      return res.status(404).send({ 'message': 'exercise not found' });
+    }
+    return res.status(200).send({ exercise: rows[0] });
+  } catch (error) {
+    return res.status(400).send(error)
+  }
+}
+
 async function update(req, res) {
   const findOneQuery = 'SELECT * FROM exercises WHERE id=$1';
   const updateOneQuery = `UPDATE exercises
@@ -83,4 +110,4 @@ async function remove(req, res) {
   }
 }
 
-module.exports = { getAll, getOne, create, update, remove };
+module.exports = { getAll, getOne, getOnePlanned, create, update, remove };

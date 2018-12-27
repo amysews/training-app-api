@@ -2,11 +2,13 @@ import express from 'express';
 import dotenv from 'dotenv';
 import 'babel-polyfill';
 import apiRouter from './routes/api'
+import cors from 'cors'
 
 dotenv.config();
 const app = express()
 const router = express.Router()
 
+app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res) => {
